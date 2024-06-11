@@ -95,10 +95,10 @@ class Triangle(Polygon):
             # Check all permutations
             if self.side_lengths == other.side_lengths:
                 return True
-            elif (self.side_lengths[1:] + [self.side_lengths[1]] ==
+            elif (self.side_lengths[1:] + [self.side_lengths[0]] ==
                     other.side_lengths):
                 return True
-            elif ([self.side_lengths[2]] + self.side_lengths[:-1] ==
+            elif ([self.side_lengths[2]] + self.side_lengths[:2] ==
                     other.side_lengths):
                 return True
             return False
