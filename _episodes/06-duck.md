@@ -166,10 +166,11 @@ class FibonacciIterator:
 
     def __next__(self):
         next_number = sum(self.last_two_numbers)
-        self.last_two_numbers = (self.last_two_numbers[1], next_number)
+
         if self.max_value < next_number:
             raise StopIteration
         else:
+            self.last_two_numbers = (self.last_two_numbers[1], next_number)
             return next_number
 ~~~
 {: .language-python}
