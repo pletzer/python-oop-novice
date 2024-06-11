@@ -42,7 +42,7 @@ We could implement this in Python as:
 
 ~~~
 def newton(function, derivative, initial_estimate, num_iters=10):
-    '''Solves the equation `function`(x) == 0 using the Newton&ndash;Raphson
+    '''Solves the equation `function`(x) == 0 using the Newton–Raphson
     method with `num_iters` iterations, starting from `initial_estimate`.
     `derivative` is the derivative of `function` with respect to x.'''
 
