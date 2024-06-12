@@ -42,9 +42,9 @@ We could implement this in Python as:
 
 ~~~
 def newton(function, derivative, initial_estimate, num_iters=10):
-    '''Solves the equation `function`(x) == 0 using the Newton–Raphson
+    """Solves the equation `function`(x) == 0 using the Newton–Raphson
     method with `num_iters` iterations, starting from `initial_estimate`.
-    `derivative` is the derivative of `function` with respect to x.'''
+    `derivative` is the derivative of `function` with respect to x."""
 
     current_estimate = initial_estimate
     for _ in range(num_iters):
@@ -113,13 +113,17 @@ initial_z = complex_linspace(z_min, z_max, 1000, 1000)
 results = newton(test_polynomial, test_derivative, initial_z, 20)
 
 fig, ax = subplots()
-image = ax.imshow(angle(results), vmin=-3, vmax=3,
-                  extent=(z_min.real, z_max.real, z_min.imag, z_max.imag))
+image = ax.imshow(
+    angle(results),
+    vmin=-3,
+    vmax=3,
+    extent=(z_min.real, z_max.real, z_min.imag, z_max.imag),
+)
 cbar = colorbar(image, ax=ax, ticks=(-2*pi/3, 0, 2*pi/3))
-cbar.set_label(r'$\arg(z_n)$')
-cbar.ax.set_yticklabels((r'$-\frac{2\pi}{3}$', '0', r'$\frac{2\pi}{3}$'))
-ax.set_xlabel(r'$\operatorname{Re}(z_0)$')
-ax.set_ylabel(r'$\operatorname{Im}(z_0)$')
+cbar.set_label(r"$\arg(z_n)$")
+cbar.ax.set_yticklabels((r"$-\frac{2\pi}{3}$", "0", r"$\frac{2\pi}{3}$"))
+ax.set_xlabel(r"$\operatorname{Re}(z_0)$")
+ax.set_ylabel(r"$\operatorname{Im}(z_0)$")
 
 show()
 ~~~
@@ -382,10 +386,10 @@ def traverse_objects(base_object, level=0, max_level=5):
     non-built-in class. max_level controls the depth that the
     recursion may continue to, to avoid infinite loops."""
 
-    if hasattr(base_object, '__dict__') and level < max_level:
+    if hasattr(base_object, "__dict__") and level < max_level:
         for child_name, child_object in vars(base_object).items():
-            if child_object.__class__.__module__ != 'builtins':
-                print(" " * level, child_name, ':', type(child_object))
+            if child_object.__class__.__module__ != "builtins":
+                print(" " * level, child_name, ":", type(child_object))
                 traverse_objects(child_object, level=level+1)
 
 
@@ -462,7 +466,7 @@ make it more complicated to get a view of the big picture.
 >> from matplotlib.colors import is_color_like
 >>
 >> class FunctionPlotter:
->>     def __init__(self, function, color='red', linewidth=1, x_min=-10, x_max=10):
+>>     def __init__(self, function, color="red", linewidth=1, x_min=-10, x_max=10):
 >>         assert is_color_like(color)
 >>         self.color = color
 >>         self.linewidth = linewidth
@@ -471,9 +475,9 @@ make it more complicated to get a view of the big picture.
 >>         self.function = function
 >>
 >>     def plot(self):
->>         '''Plot a function of a single argument.
+>>         """Plot a function of a single argument.
 >>         The line is plotted in the colour specified by color, and with width
->>         linewidth.'''
+>>         linewidth."""
 >>         fig, ax = subplots()
 >>         x = linspace(self.x_min, self.x_max, 1000)
 >>         ax.plot(x, self.function(x), color=self.color, linewidth=self.linewidth)
@@ -486,7 +490,7 @@ make it more complicated to get a view of the big picture.
 >> from numpy import sin
 >>
 >> sin_plotter = FunctionPlotter(sin)
->> quadratic_plotter = FunctionPlotter(Quadratic(1, -1, 1), color='blue')
+>> quadratic_plotter = FunctionPlotter(Quadratic(1, -1, 1), color="blue")
 >> sin_plotter.plot()
 >> quadratic_plotter.plot()
 >>
