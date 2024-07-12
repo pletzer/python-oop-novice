@@ -485,7 +485,7 @@ print(type(students))
 > ~~~
 > {: .language-python}
 >
-> Identify the type of `model` and list two classes methods.
+> Identify the type of `model` and list two class methods. Find one member of the class by navigating the documentation of [LinearRegression](https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LinearRegression.html), 
 >> ## Solution
 >> `model` is of type `sklearn.linear_model._base.LinearRegression`. Here `fit` and `predict` are two methods. 
 > {: .solution}
