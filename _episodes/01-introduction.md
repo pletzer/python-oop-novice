@@ -477,12 +477,14 @@ print(type(students))
 > ## An example from the scikit-learn package
 
 > The following code solves a linear regression problem using the scikit-learn package
-> ```
+> ~~~
 > from sklearn.linear_model import LinearRegression
 > model = LinearRegression(fit_intercept=False)
 > model.fit(X=[[1,],[2,]], y=[1, 2])
 > model.predict(X=[[1.5,]])
-> ```
+> ~~~
+> {: .language-python}
+>
 > Identify the type of `model` and list two classes methods.
 >> ## Solution
 >> `model` is of type `sklearn.linear_model._base.LinearRegression`. Here `fit` and `predict` are two methods. 
