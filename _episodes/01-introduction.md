@@ -31,11 +31,13 @@ As a Python user, you will likely need to grasp the essence of object oriented p
 
 ## When should I use object oriented programming?
 
-Object oriented programming allows you to perform complex tasks, sometimes in more efficient way, than procedural programming (i.e. just calling functions). It also tells the programmer which operations are allowed on an object, and which are not.
+Object oriented programming allows you to perform complex tasks, sometimes in more efficient way, than _procedural programming_ (i.e. just calling functions). It also tells the programmer which operations are allowed on an object, and which are not.
 
-Consider for example a plotting package. Plotting data typically involves many fine grained operations (creating the plot, adding axis labels, title, legend etc.). On could write a function that performs all these oprations with a single call. However, this function would take a lot of arguments to control all aspects of plotting. What if you wanted to change the title? You would have to call the function again with the same arguments except for one small change. This is error prone but is also inefficient since most of the plot object was mostly fine and just needed minor tweaking.
+Consider for example a plotting package. Plotting data typically involves many fine grained operations (creating the plot, adding axis labels, title, legend etc.). On could write a function that performs all these operations with a single call. However, this function would take a lot of arguments to control all aspects of plotting. 
 
-## An example showing the difference between procedurable and object-oriented programming
+What if you wanted to change the title? You would have to call the function again with the same arguments except for one small change. This is error prone but is also inefficient since most of the plot object was mostly fine and just needed minor tweaking.
+
+## An example showing the difference between procedural and object-oriented programming
 
 In the procedural programming approach, the mean of a Numpy array can be computed by using
 `numpy.mean`, as
@@ -66,7 +68,7 @@ print(numbers.mean())
 
 > ## The dot notation
 >
-> Note the `.` (dot) separating the object (`numbers`) from the `mean` method. The dot notation is a common feature of many object oriented programming languages. It means `mean` is a function that belongs to object `numbers`. 
+> Note the `.` (dot) separating the object (`numbers`) from the `mean` method. The dot notation is a common feature of many object oriented programming languages. It means `mean` is a *function that belongs* to object `numbers`. 
 {: .callout}
 
 Let's see if we can do this with a normal list:
@@ -81,12 +83,16 @@ In this case Python will complain with an error. How does Python know it can do 
 > ## Discuss the advantages/disadvantages of objected oriented programming over procedural programming
 >
 >> ## Solution
->> The procedural approach is more generic, it works both on lists and numpy arrays whereas the object oriented approach requires a specific type. This could make the object oriented approach safer.
+>>  * The procedural approach is _generic_, it works both on lists and numpy arrays
+>>  * The object oriented approach requires a specific type, which makes it safer
+>>  * The object oriented way may be more concise
+>>  * In the object oriented way we're telling people what they can do with an object
 > {: .solution}
 {: .challenge}
 
 ## What type is it?
-Let's investigate this further by using `type` to identify what the data type of `numbers` is:
+
+We mentioned that attaches functions to types. Let's investigate this further by using `type` to identify what the data type of `numbers` is:
 
 ~~~
 type(numbers)
