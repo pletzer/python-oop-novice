@@ -1,7 +1,7 @@
 ---
 title: "Objects in Python"
-teaching: 20
-exercises: 15
+teaching: 30
+exercises: 20
 questions:
 - "What is object oriented programming?"
 - "When should I use object oriented programming?"
@@ -80,7 +80,25 @@ print(more_numbers.mean())
 
 In this case Python will complain with an error. How does Python know it can do this for `numbers` but not `more_numbers`?
 
-> ## Discuss the advantages/disadvantages of objected oriented programming over procedural programming
+## An example of object oriented design from the scikit-learn package
+
+The example below shows how object oriented programming lies at the heart of many Python packages. Here, a linear regression model `mymodel` is created, the model is fitted with data and predictive values `ypred` are inferred 
+from the model after it is fitted, 
+~~~
+from sklearn.linear_model import LinearRegression
+mymodel = LinearRegression(fit_intercept=False)
+mymodel.fit(X=[[1,],[2,]], y=[1, 2])
+ypred = mymodel.predict(X=[[1.2,],[1.8,], [2.2,]])
+~~~
+{: .language-python}
+While it would have been possible to write a function that performs the `fit` and `predict` operations together, equivalent to
+~~~
+ypred = LinearRegression(fit_intercept=False).fit(X=[[1,],[2,]], y=[1, 2]).predict(X=[[1.2,],[1.8,], [2.2,]])
+~~~
+{: .language-python}
+the object oriented design provides additional advantages. Specifically, the `predict` operation can be called as many times as desired once the model is fitted. In many machine learning algorithms, predicting values is cheap compared to fitting. Therefore, `fit` should not be called more often than necessary.
+
+> ## Discuss the pros/cons of objected oriented programming over procedural programming
 >
 >> ## Solution
 >>  * The procedural approach is _generic_, it works both on lists and numpy arrays

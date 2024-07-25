@@ -1,7 +1,7 @@
 ---
 title: "Writing classes"
-teaching: 20
-exercises: 25
+teaching: 30
+exercises: 20
 questions:
 - "How are classes written in Python?"
 - "What do methods look like?"
@@ -176,7 +176,7 @@ Line width of blue plotter is 5
 ~~~
 {: .output}
 
-> ## Mutation revisitied
+> ## Changing an object
 >
 > Note that the classes we create ourselves in this way will produce mutable objects. This means that we can change the values in objects of `plotter.linewidth`, and Python allows us to do that. It doesn't throw an error.
 {: .callout}
