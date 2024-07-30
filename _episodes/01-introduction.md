@@ -23,24 +23,31 @@ keypoints:
 
 ## What is object oriented programming?
 
-Since the 1990s, Python has grown immensely in popularity. As a result, the complexity of some Python packages has reached the point where their 
+Since the 1990s, Python has grown in popularity. As a result, the complexity of some Python packages has reached the point where their 
 application programming interface no longer reduces to simple function calls. Such packages might have an 
-_object oriented_ design. 
+_object oriented_ design.
 
-As a Python user, you will likely need to grasp the essence of object oriented programming in order to use these packages. Such packages are built around _objects_, i.e. data structures with _attributes_ and _methods_. Attributes are properties, we can think of them as adjectives (e.g. "red", "heavy", etc.). Methods are functions that operate on the object or other objects, we can think of them as verbs (e.g "walk", "eat", ...). The concepts of objects, attributes and methods will be further demystified in the course of this workshop.
+As a Python user, you will likely need to grasp the essence of object oriented programming in order to use these packages. Such packages are built around _objects_, i.e. data structures with _attributes_ and _methods_. Attributes are properties, we can think of them as adjectives (e.g. "red", "heavy", etc.). Methods are functions that operate on the object or other objects, we can think of them as verbs (e.g "walk", "eat", ...). The concepts of objects, attributes and methods will be further clarified in the course of this workshop.
+
+Object oriented programming exists in other languages (C++, Java and Fortran). Many concepts presented here apply equally to these languages. However, Python is the ideal language to learn object oriented programming due to its interactivity.
 
 ## When should I use object oriented programming?
 
-Object oriented programming allows you to perform complex tasks, sometimes in more efficient way, than _procedural programming_ (i.e. just calling functions). It also tells the programmer which operations are allowed on an object, and which are not.
+Object oriented programming allows you to perform complex tasks sometimes in more efficient way.
 
-Consider for example a plotting package. Plotting data typically involves many fine grained operations (creating the plot, adding axis labels, title, legend etc.). On could write a function that performs all these operations with a single call. However, this function would take a lot of arguments to control all aspects of plotting. 
+Consider for example a plotting package. Plotting data typically involves many fine grained operations (creating the plot, adding axis labels, title, legend etc.). On could write a function that performs all these operations with a single call. However, this function would take a lot of arguments to control all aspects of plotting. What if you wanted to change the title? You would have to call the function again with the same arguments except for one small change. This is error prone but also inefficient since most of the plot was fine and only minor tweaking was needed.
 
-What if you wanted to change the title? You would have to call the function again with the same arguments except for one small change. This is error prone but is also inefficient since most of the plot object was mostly fine and just needed minor tweaking.
+You may face the dilemma of using a function or a class when implementing code. Using a _procedural_ approach may be the right choice if the code
+
+ * Performs a simple operation
+ * The function takes only a few arguments
+ * The function is pure (does not have a state) 
+ * And you don't expect the need to add functionality with time
 
 ## An example showing the difference between procedural and object-oriented programming
 
 In the procedural programming approach, the mean of a Numpy array can be computed by using
-`numpy.mean`, as
+`numpy.mean`,
 
 ~~~
 import numpy
@@ -49,10 +56,6 @@ print(numpy.mean(numbers))
 ~~~
 {: .language-python}
 
-~~~
-4.5
-~~~
-{: .output}
 
 However, we can also calculate the mean of a Numpy array as:
 
@@ -61,14 +64,10 @@ print(numbers.mean())
 ~~~
 {: .language-python}
 
-~~~
-4.5
-~~~
-{: .output}
 
 > ## The dot notation
 >
-> Note the `.` (dot) separating the object (`numbers`) from the `mean` method. The dot notation is a common feature of many object oriented programming languages. It means `mean` is a *function that belongs* to object `numbers`. 
+> Note the `.` (dot) separating the object (`numbers`) from the `mean` method. The dot notation is a common feature of many object oriented programming languages. It means `mean` is a *function that belongs to*. In the first case, `mean` belongs to module `numpy` and in the second case `mean` belongs to object `numbers`. 
 {: .callout}
 
 Let's see if we can do this with a normal list:
@@ -78,12 +77,11 @@ print(more_numbers.mean())
 ~~~
 {: .language-python}
 
-In this case Python will complain with an error. How does Python know it can do this for `numbers` but not `more_numbers`?
+In this case Python will complain with an error. How does Python know it can do this for `numbers` but not `more_numbers`? This will be explained later.
 
 ## An example of object oriented design from the scikit-learn package
 
-The example below shows how object oriented programming lies at the heart of many Python packages. Here, a linear regression model `mymodel` is created, the model is fitted with data and predictive values `ypred` are inferred 
-from the model after it is fitted, 
+The example below shows how object oriented programming lies at the heart of many Python packages. Here, a linear regression model `mymodel` is created, the model is fitted with data and predictive values `ypred` are inferred from the model after it is fitted, 
 ~~~
 from sklearn.linear_model import LinearRegression
 mymodel = LinearRegression(fit_intercept=False)
@@ -96,11 +94,12 @@ While it would have been possible to write a function that performs the `fit` an
 ypred = LinearRegression(fit_intercept=False).fit(X=[[1,],[2,]], y=[1, 2]).predict(X=[[1.2,],[1.8,], [2.2,]])
 ~~~
 {: .language-python}
-the object oriented design provides additional advantages. Specifically, the `predict` operation can be called as many times as desired once the model is fitted. In many machine learning algorithms, predicting values is cheap compared to fitting. Therefore, `fit` should not be called more often than necessary.
+the object oriented design provides additional advantages. Specifically, the `predict` operation can be called as many times as desired once the model is fitted. In many machine learning algorithms, predicting values is cheap compared to fitting. Therefore, by separating the `fit` and the `predict` calls we can be more efficient.
 
 > ## Discuss the pros/cons of objected oriented programming over procedural programming
 >
 >> ## Solution
+>> This is not an exhaustive list but here are some differences:
 >>  * The procedural approach is _generic_, it works both on lists and numpy arrays
 >>  * The object oriented approach requires a specific type, which makes it safer
 >>  * The object oriented way may be more concise
@@ -110,7 +109,7 @@ the object oriented design provides additional advantages. Specifically, the `pr
 
 ## What type is it?
 
-We mentioned that attaches functions to types. Let's investigate this further by using `type` to identify what the data type of `numbers` is:
+We mentioned that object oriented programming attaches functions to types. Let's investigate this further by using `type` to identify what the data type of `numbers` is:
 
 ~~~
 type(numbers)
@@ -235,7 +234,7 @@ We can see here that `numbers` is an object of the type `numpy.ndarray`. In Pyth
 
 We say that an object of a particular class is an _instance_ of that
 class. To use a real world example, we could have the type or class
-`Chair` which describes to all the chairs in the world. The chair that
+`Chair` which describes all the chairs in the world. The chair that
 you are sitting on right now is a specific _instance_ of the chair
 class.
 
@@ -251,7 +250,7 @@ True
 ~~~
 {: .output}
 
-Every object is created with a single class, and which can't be changed. The class of an object can also provide behaviour that the object might have, by providing functions to objects in its class. These functions can be called by using a dot after the variable name, for example:
+Every object is created with a single class, and which can't be changed. The class of an object can also provide behaviour that the object might have, by providing functions to objects in its class. As seen before, these functions can be called by using a dot after the variable name, for example:
 ~~~
 numbers.mean()
 ~~~
