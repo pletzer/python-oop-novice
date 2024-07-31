@@ -5,6 +5,7 @@ exercises: 20
 questions:
 - "How are classes written in Python?"
 - "What do methods look like?"
+- "What is a constructor?"
 - "How can a class customise how its instances are constructed?"
 objectives:
 - "Write classes from scratch"
@@ -14,7 +15,7 @@ keypoints:
 - "Classes in Python are blocks started with the `class` keyword"
 - "Method definitions look like functions, but must take a `self` argument"
 - "The `__init__` method is called when instances are constructed"
-- "Rely on class inheriteance for code re-use"
+- "Spend less time coding and more time at the beach with class inheritance"
 ---
 
 In the previous section, we've seen how objects can have different behaviour, provided by methods.
@@ -48,7 +49,7 @@ First we define the class with the `class` keyword. The name of the class is `My
 
 Next we implement two methods: `fit` and `predict` that take the same arguments as the correspong methods in `sklearn.linear_model.LinearRegression`. The `fit` method does not return anything, it computes the linear square coefficients. The `predict` method takes data values and computes the "best" estimates for those values.
 
-You may wonder what the `__init__` method does? This is a special method used to construct the object. In this case `__init__` does not take any arguments (but it can like any other function). 
+You may wonder what the `__init__` method does? This is a special method used to construct the object (`__init__` is called the constructor). In this case `__init__` does not take any arguments (but it can like any other function). 
 
 All the methods are contained within the `class` definition and take `self` as first argument. `self` refers to the object itself. Thus, `self.coef_` is the `coef_` attribute attached to a particular instance. 
 
@@ -91,7 +92,7 @@ Note that our new class behaves the same way as `sklearn.linear_model.LinearRegr
 
 > ## Problem
 >
-> Add an attribute `intercept_` to  class `MyLinearRegression` and initialise this attribute to zero.
+> Add a member `intercept_` to  class `MyLinearRegression` and initialise this member to zero.
 >
 >> ## Solution
 >>~~~
@@ -138,9 +139,11 @@ class MyLinearRegression2(LinearRegression):
 ~~~
 {: .language-python}
 
-Note the `class` statement, followed by the class name and, in parentheses, the parent class (`LinearRegression` in this case). If you invoke a method the interpreter will look for the implementation of the method in the class, and if it cannot find it the interpreter will look for the method in the parent class (or the parent of the parent if the parent is also a derived class). In our case, we don;t have to implement `predict` as it will be taken from class `LinearRegression`. This can save a lot of coding. Less code often means fewer bugs.
+Note the `class` statement, followed by the class name and, in parentheses, the parent class (`LinearRegression` in this case). If you invoke a method of an instance the interpreter will look for the implementation of the method in the class.  If the interpreter cannot find the method inside the class,  it will look for the method in the parent class (or the parent of the parent if the parent is also a derived class). 
 
-The constructor of the parent class (`__init__`) is always called automatically unless it is overwritten in the child class. If we overwrite it in the child class, we typically also want to call the parent's constructor. This is achieved with `super()`. How to use `super()` is detailed in the next episode. In our example our example, we could have
+That's great news because we don't have to implement `predict` as this method will be found in class `LinearRegression`. This can save a lot of coding. Shorter code generally means fewer bugs.
+
+The constructor of the parent class (`__init__`) is always called automatically unless it is overwritten in the child class. If we overwrite it in the child class, we typically also want to call the parent's constructor. This is achieved with `super()`. How to use `super()` is detailed in the next episode. In our example, we could have
 
 ~~~
 from sklearn.linear_model import LinearRegression
@@ -163,11 +166,11 @@ class MyLinearRegression3(LinearRegression):
 
 > ## Problem
 >
-> Class `sklearn.linear_model.LinearRegression` has additional members and methods. One such method is `score`. Check that instances of `MyLinearRegression` can call `score`.
+> Class `sklearn.linear_model.LinearRegression` has additional members and methods. One such method is `score`. Check that instances of `MyLinearRegression3` can call `score`.
 >
 >> ## Solution
 >>~~~
->>m = MyLinearRegression2()
+>>m = MyLinearRegression3()
 >>m.fit(X=[[1,],[2,]], y=[1, 2])
 >>m.score(X=[[1.2,],[1.8,], [2.2,]], y=[1.2, 1.8, 2.2])
 >>~~~

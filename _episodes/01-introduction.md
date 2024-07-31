@@ -7,15 +7,15 @@ questions:
 - "When should I use object oriented programming?"
 - "What are objects in Python?"
 - "What is a class or type?"
+- "What is an instance of a class?"
+- "What is a member?"
+- "What is a method?"
 - "Can objects belong to more than one class?"
 - "How can objects be created from a class?"
 objectives:
 - "Be able to distinguish between class and object"
 - "Be able to construct objects via a class's constructor"
-- "Be able to distinguish between equality and identity of objects"
 keypoints:
-- "Anything that we can store in a variable in Python is an object"
-- "Every object in Python has a class (or type)"
 - "`list` and `numpy.ndarray` are commonly-used classes; lists and arrays are corresponding objects"
 - "Calling the class as a function constructs new objects of that class"
 - "Classes can inherit from other classes; objects of the subclass are automatically also of the parent class"
@@ -91,7 +91,8 @@ ypred = mymodel.predict(X=[[1.2,],[1.8,], [2.2,]])
 {: .language-python}
 While it would have been possible to write a function that performs the `fit` and `predict` operations together, equivalent to
 ~~~
-ypred = LinearRegression(fit_intercept=False).fit(X=[[1,],[2,]], y=[1, 2]).predict(X=[[1.2,],[1.8,], [2.2,]])
+def fit_and_predict(Xtrain, ytrain, Xpred):
+    return LinearRegression(fit_intercept=False).fit(X=Xtrain, y=ytrain).predict(X=Xpred)
 ~~~
 {: .language-python}
 the object oriented design provides additional advantages. Specifically, the `predict` operation can be called as many times as desired once the model is fitted. In many machine learning algorithms, predicting values is cheap compared to fitting. Therefore, by separating the `fit` and the `predict` calls we can be more efficient.
@@ -107,9 +108,26 @@ the object oriented design provides additional advantages. Specifically, the `pr
 > {: .solution}
 {: .challenge}
 
-## What type is it?
 
-We mentioned that object oriented programming attaches functions to types. Let's investigate this further by using `type` to identify what the data type of `numbers` is:
+## Classes, instances, members and methods
+
+A _class_ is a type of object. We say that an object of a particular class is an _instance_ of that
+class. To use a real world example, we could have a class `Handbag` that describes all types of handbags. 
+The one you're holding right now is an _instance_ of the `Handbag` class.
+
+A handbag is made of lots of stuff (fabric, strap, handle, zipper, etc.). Each of these items can be a _member_ of the 
+`Handbag` class.
+
+You can do many things with a handbag. You can carry it, you can lend it to a friend, offer it as a birthday present or you can swing it into the face of your worst enemy. These actions are _methods_.
+
+>## Class or Type?
+>
+> Note that in literature, you'll find a subtle
+> distinction between _class_ and _type_. However, since in Python 3
+> we can't have one without the other, we will use both terms interchangably.
+{: .callout}
+
+We can obtain the type of an object with the `type` function.
 
 ~~~
 type(numbers)
@@ -117,126 +135,9 @@ type(numbers)
 {: .language-python}
 
 ~~~
-<class 'numpy.ndarray'>
+numpy.ndarray
 ~~~
 {: .output}
-
-What about the type of the variable `more_numbers`?
-
-~~~
-type(more_numbers)
-~~~
-{: .language-python}
-
-~~~
-<class 'list'>
-~~~
-{: .output}
-We can see here that `numbers` is an object of the type `numpy.ndarray`. In Python, anything which can be stored in a variable or passed to a function is called an _object_. Objects are classified by their `type`, or their `class`.
-
-> ## Class or Type?
->
-> Note that in literature, you'll find a subtle
-> distinction between _class_ and _type_. However, since in Python 3
-> we can't have one without the other, we will use both terms interchangably.
-{: .callout}
-
-> ## Let's find some types
->
-> Can you find anything that you can store in a variable which
-> does not have a class? What is the type of the number `1`,
-> or the string `"hello"`?
->
-> Does the class change if they are passed directly to `type`,
-> or if they are stored in a variable?
->
->> ## Solution
->>
->> ~~~
->> type(1)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->> <class 'int'>
->> ~~~
->> {: .output}
->>
->> ~~~
->> type("hello")
->> ~~~
->> {: .language-python}
->>
->> ~~~
->> <class 'string'>
->> ~~~
->> {: .output}
-> {: .solution}
-{: .challenge}
-
-> ## Does everything have a class?
->
-> Try to find words that Python recognises that do not have classes. What about `numpy.mean` or `numpy`?
-> What about `if` or `for`? Can you think of others?
->
->> ## Solution
->>
->> ~~~
->> type(numpy.mean)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->> <class 'function'>
->> ~~~
->> {: .output}
->>
->> ~~~
->> type(numpy)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->> <class 'module'>
->> ~~~
->> {: .output}
->> The objects `numpy.mean` and `numpy` are things that we typically wouldn't store in variables or passed around. However, they could in principle be stored in variables, and therefore are objects with a class.
->> ~~~
->> type(if)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->>  File "<stdin>", line 1
->>    type(if)
->>          ^
->>SyntaxError: invalid syntax
->> ~~~
->> {: .output}
->> ~~~
->> type(for)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->>  File "<stdin>", line 1
->>    type(for)
->>          ^
->>SyntaxError: invalid syntax
->> ~~~
->> {: .output}
->> The words `if` and `for` are part of the Python language itself, they can't be stored in variables. Only things which can be stored in variables can have a class.
-> {: .solution}
-{: .challenge}
-
-
-## Instances and Methods
-
-We say that an object of a particular class is an _instance_ of that
-class. To use a real world example, we could have the type or class
-`Chair` which describes all the chairs in the world. The chair that
-you are sitting on right now is a specific _instance_ of the chair
-class.
 
 We can check if an object is an _instance of_ a particular class with the `isinstance` function.
 
@@ -250,75 +151,44 @@ True
 ~~~
 {: .output}
 
-Every object is created with a single class, and which can't be changed. The class of an object can also provide behaviour that the object might have, by providing functions to objects in its class. As seen before, these functions can be called by using a dot after the variable name, for example:
+or 
+
+~~~
+isinstance(numbers, list)
+~~~
+{: .language-python}
+
+~~~
+False
+~~~
+{: .output}
+
+Every object is created with a single class, which can't be changed. The class of an object can also provide behaviour that the object might have, by providing functions to objects in its class. As seen before, these functions can be called by using a dot after the variable name, for example:
 ~~~
 numbers.mean()
 ~~~
 {: .language-python}
 
-The functions which are associated with an object are provided by the class of the object. When a class provides a function to an object we call that function a _method_ of the class.
-
 We say that the `numpy.ndarray` class provides the `mean` _method_. Since `numbers` belongs to the class `numpy.ndarray`, we can use the `mean` method on the object referred to by `numbers`, by calling `numbers.mean()`. This allows objects of a `numpy.ndarray` to provide functionality specific to objects of class `numpy.ndarray`.
 
-It's worth noting that both mutable and immutable objects can have methods. Methods of immutable objects, however, can't change
-the underlying object. If needed, they will return a brand new object, and set the expected value in the new object. To keep this change,
-you will need to store it in a variable, for example:
-~~~
-hello = "hello, world"
-capital_hello = hello.capitalize()
-print(capital_hello)
-~~~
-{: .language-python}
+Every instance of `numpy.ndarray` has a member `shape`, which holds the dimensions of the underlying data.
 
-Methods of mutable objects can, and often do, change the object.
 ~~~
-grades = [84, 78, 91]
-grades.append(66)
-print(grades)
+numbers.shape
 ~~~
 {: .language-python}
 
 ~~~
-[84, 78, 91, 66]
+(10,)
 ~~~
 {: .output}
 
-In this case, we don't need the extra `=` to assign the value to a new object.
-
-> ## Finding out what things are
+> ## Mutable vs immutable objects
 >
-> use `type()` to find the type of `students`, defined as
->
-> ~~~
-> students = ['Petra', 'Aalia', 'Faizan', 'Shona']
-> ~~~
-> {: .language-python}
->
-> and check this with `isinstance`.
->
->> ## Solution
->>
->> ~~~
->> type(students)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->> <class 'list'>
->> ~~~
->> {: .output}
->>
->> ~~~
->> isinstance(students, list)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->> True
->> ~~~
->> {: .output}
-> {: .solution}
-{: .challenge}
+> It's worth noting that both mutable and immutable objects can have methods. Methods of immutable objects, however, can't change
+> the underlying object. If needed, they will return a brand new object, and set the expected value in the new object. 
+> Methods of mutable objects can, and often do, change the object.
+{: .callout}
 
 > ## Other common classes
 >
@@ -355,69 +225,6 @@ print(type(students))
 > initialising the data, and initialising from an existing data structure like
 > a list, respectively).
 {: .callout}
-
-> ## Make a dict
->
-> Given the following list of students and their grades, how would you
-> construct a `dict` with students as keys, and grades as values?
->
-> ~~~
-> students = ['Petra', 'Aalia', 'Faizan', 'Shona']
-> grades = [84, 78, 91, 66]
-> ~~~
-> {: .language-python}
->
-> You can check the type of the object you've created with `isinstance`
->
-> Hint: `zip()` can be used to turn two lists into tuples of corresponding
-> pairs of elements.
->
->> ## Solution
->>
->> ~~~
->> student_grades = dict(zip(students, grades))
->> isinstance(student_grades, dict)
->> ~~~
->> {: .language-python}
->>
->> ~~~
->> True
->> ~~~
->> {: .output}
-> {: .solution}
-{: .challenge}
-
-## Equality and identity
-
-Python has two ways of testing whether two objects are the "same". The first
-is _equality_, or whether the associated values or contents of the object are
-the same.
-
-The second is _identity_, or whether the objects are in fact the
-same instance, with names referring to the same underlying object.
-
-Equality is tested with `==`, which you have probably used before. We can test for identity with the `is` keyword:
-
-~~~
-old_students = students
-new_students = ['Petra', 'Aalia', 'Faizan', 'Shona']
-
-if old_students == students:
-    print("old_students is equal to the students list")
-if new_students == students:
-    print("new_students is equal to the students list")
-if old_students is students:
-    print("old_students is identical to the students list")
-if new_students is students:
-    print("new_students is identical to the students list")
-~~~
-{: .language-python}
-
-Constructing a new list that has the same elements as an existing list
-gives a list that is equal, but not identical, to the existing one. This is
-true for any class: constructing a new object that is the same as an existing
-one will give a result that is equal, but not identical, to the existing one.
-
 
 ## Inheritance
 
