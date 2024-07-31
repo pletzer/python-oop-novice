@@ -1,5 +1,5 @@
 ---
-title: "Inheritance"
+title: "More on inheritance"
 teaching: 20
 exercises: 20
 questions:
