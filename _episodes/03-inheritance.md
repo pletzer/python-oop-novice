@@ -23,11 +23,7 @@ it."
 
 We have talked about using classes as a way to reduce repetition in the
 software we write. However, what happens if we want to write two classes that
-do similar but distinct things? For example, if we wanted to write a
-`CubicPlotter` as well as our `QuadraticPlotter`, would we need to repeat all
-of the code common to both of them? What if we wanted a `QuarticPlotter` and a
-`QuinticPlotter` as well? This repetitive code would quickly start to build
-up...
+do similar but distinct things? 
 
 Thankfully, Python (and most other languages that have classes) give us a
 mechanism to avoid this in the form of _inheritance_. A class that inherits
