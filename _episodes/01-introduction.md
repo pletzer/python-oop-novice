@@ -18,6 +18,7 @@ objectives:
 keypoints:
 - "`list` and `numpy.ndarray` are commonly-used classes; lists and arrays are corresponding objects"
 - "Calling the class as a function constructs new objects of that class"
+- "Objects have members and methods; members are attributes and methods dictate the behaviour of the object"
 - "Classes can inherit from other classes; objects of the subclass are automatically also of the parent class"
 ---
 
