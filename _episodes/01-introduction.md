@@ -28,7 +28,7 @@ Since the 1990s, Python has grown in popularity. As a result, the complexity of 
 application programming interface no longer reduces to simple function calls. Such packages might have an 
 _object oriented_ design.
 
-As a Python user, you will likely need to grasp the essence of object oriented programming in order to use these packages. Such packages are built around _objects_, i.e. data structures with _attributes_ and _methods_. Attributes are properties, we can think of them as adjectives (e.g. "red", "heavy", etc.). Methods are functions that operate on the object or other objects, we can think of them as verbs (e.g "walk", "eat", ...). The concepts of objects, attributes and methods will be further clarified in the course of this workshop.
+As a Python user, you will likely need to grasp the essence of object oriented programming in order to use these packages. Such packages are built around _objects_, i.e. data structures with _attributes_ and _methods_. Attributes are properties, we can think of them as properties (e.g. "red", "leather", etc.). Methods are functions that operate on the object or on other objects, we can think of them as verbs (e.g "walk", "eat", ...). The concepts of objects, attributes and methods will be further clarified in the course of this workshop.
 
 Object oriented programming exists in other languages (C++, Java and Fortran). Many concepts presented here apply equally to these languages. However, Python is the ideal language to learn object oriented programming due to its interactivity.
 
