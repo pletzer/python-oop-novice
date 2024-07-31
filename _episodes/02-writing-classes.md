@@ -140,7 +140,7 @@ class MyLinearRegression2(LinearRegression):
 
 Note the `class` statement, followed by the class name and, in parentheses, the parent class (`LinearRegression` in this case). If you invoke a method the interpreter will look for the implementation of the method in the class, and if it cannot find it the interpreter will look for the method in the parent class (or the parent of the parent if the parent is also a derived class). In our case, we don;t have to implement `predict` as it will be taken from class `LinearRegression`. This can save a lot of coding. Less code often means fewer bugs.
 
-The constructor of the parent class (`__init__`) is always called automatically unless it is overwritten in the child class. If we overwrite it in the child class and want to call the parent's class constructor as well using `super()`. Comming back to our example, we could have
+The constructor of the parent class (`__init__`) is always called automatically unless it is overwritten in the child class. If we overwrite it in the child class, we typically also want to call the parent's constructor. This is achieved with `super()`. How to use `super()` is detailed in the next episode. In our example our example, we could have
 
 ~~~
 from sklearn.linear_model import LinearRegression
