@@ -110,23 +110,32 @@ the object oriented design provides additional advantages. Specifically, the `pr
 {: .challenge}
 
 
-## Classes, instances, members and methods
+## What are classes, instances, members and methods
 
-A _class_ is a type of object. We say that an object of a particular class is an _instance_ of that
-class. To use a real world example, we could have a class `Handbag` that describes all types of handbags. 
-The one you're holding right now is an _instance_ of the `Handbag` class.
-
-A handbag is made of lots of stuff (fabric, strap, handle, zipper, etc.). Each of these items can be a _member_ of the 
-`Handbag` class.
-
-You can do many things with a handbag. You can carry it, you can lend it to a friend, offer it as a birthday present or you can swing it into the face of your worst enemy. These actions are _methods_.
-
->## Class or Type?
->
-> Note that in literature, you'll find a subtle
-> distinction between _class_ and _type_. However, since in Python 3
-> we can't have one without the other, we will use both terms interchangably.
+>## Class
+> A _class_ is a type of object. We say that an object of a particular class is an _instance_ of that
+> class. To use a real world example, we could have a class `Handbag` that describes all types of handbags. 
 {: .callout}
+
+>## Instance
+> The one you're holding right now is an _instance_ of the `Handbag` class.
+{: .callout}
+
+> ## Member
+> A handbag is made of lots of stuff (fabric, strap, handle, zipper, etc.). Each of these items can be a _member_ of the 
+> `Handbag` class.
+{: .callout}
+
+> ## Method
+> You can do many things with a handbag. You can carry it, you can lend it to a friend, offer it as a birthday present or you 
+> can swing it into the face of your worst enemy. These actions are called _methods_.
+{: .callout}
+
+## Finding out to which class an object belongs to
+
+In literature, you'll find a subtle
+distinction between _class_ and _type_. However, since in Python 3
+we can't have one without the other, we will use both terms interchangably.
 
 We can obtain the type of an object with the `type` function.
 
