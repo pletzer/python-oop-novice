@@ -110,15 +110,15 @@ the object oriented design provides additional advantages. Specifically, the `pr
 {: .challenge}
 
 
-## What are classes, instances, members and methods
+## What are classes, instances, members and methods?
 
 >## Class
-> A _class_ is a type of object. We say that an object of a particular class is an _instance_ of that
-> class. To use a real world example, we could have a class `Handbag` that describes all types of handbags. 
+> A _class_ is a type of object. It is the answer to the question "what is ...?"
 {: .callout}
 
 >## Instance
-> The one you're holding right now is an _instance_ of the `Handbag` class.
+> We say that an object of a particular class is an _instance_ of that
+> class. To use a real world example, we could have a class `Handbag` that describes all types of handbags. The one you're holding right now is an _instance_ of the `Handbag` class.
 {: .callout}
 
 > ## Member
