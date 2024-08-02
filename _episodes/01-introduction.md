@@ -32,6 +32,10 @@ As a Python user, you will likely need to grasp the essence of object oriented p
 
 Object oriented programming exists in other languages (C++, Java and Fortran). Many concepts presented here apply equally to these languages. However, Python is the ideal language to learn object oriented programming due to its interactivity.
 
+## But...what is an object?
+
+An object is a way of packaging data. Instead of holding a single number, an object may hold a collection of data, numbers, strings and perhaps other objects. The content of an object can be manipulated collectively as a single entity, for instance passed as one argument to a function. 
+
 ## When should I use object oriented programming?
 
 Object oriented programming allows you to perform complex tasks sometimes in more efficient way.
@@ -77,6 +81,17 @@ more_numbers = [1, 2, 3, 4]
 print(more_numbers.mean())
 ~~~
 {: .language-python}
+~~~
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+Input In [18], in <cell line: 2>()
+      1 more_numbers = [1, 2, 3, 4]
+----> 2 print(more_numbers.mean())
+
+AttributeError: 'list' object has no attribute 'mean'
+~~~
+{: .output}
+
 
 In this case Python will complain with an error. How does Python know it can do this for `numbers` but not `more_numbers`? This will be explained later.
 
@@ -117,8 +132,8 @@ the object oriented design provides additional advantages. Specifically, the `pr
 {: .callout}
 
 >## Instance
-> We say that an object of a particular class is an _instance_ of that
-> class. To use a real world example, we could have a class `Handbag` that describes all types of handbags. The one you're holding right now is an _instance_ of the `Handbag` class.
+> We say that an object of a particular class is an _instance_ of that class. 
+> To use a real world example, we could have a class `Handbag` that describes all types of handbags. The one you're holding right now is an _instance_ of the `Handbag` class.
 {: .callout}
 
 > ## Member
@@ -130,6 +145,7 @@ the object oriented design provides additional advantages. Specifically, the `pr
 > You can do many things with a handbag. You can carry it, you can lend it to a friend, offer it as a birthday present or you 
 > can swing it into the face of your worst enemy. These actions are called _methods_.
 {: .callout}
+
 
 ## Finding out to which class an object belongs to
 
@@ -236,9 +252,32 @@ print(type(students))
 > a list, respectively).
 {: .callout}
 
+## Finding out what's in an object
+
+Now that we know how to create objects (i.e. instances of a class), we may want to know:
+ 1. What's in the object
+ 2. And what can we do with an object.
+
+Python is unique in that it let's you peek inside the object. This is known as introspection. The content of an object can be gleaned with the `dir` function. For instance,
+
+~~~
+dir(students)
+~~~
+{: .language-python}
+which lists members and methods. Somewhere at the bottom of the list you'll see `sort`, a method that sorts the list of students,
+~~~
+type(students.sort)
+~~~
+{: .language-python}
+
+~~~
+builtin_function_or_method
+~~~
+{: .output}
+
 ## Inheritance
 
-Object-oriented programming allows relationships to be defined between classes or types.
+Object-oriented programming allows relationships to be defined between classes/types.
 One class may be considered to be a specialisation or _subclass_ of another.
 For a real world example, a car could be considered a specialisation or subclass of the class of all vehicles.
 
