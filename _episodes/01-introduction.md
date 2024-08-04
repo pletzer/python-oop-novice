@@ -16,7 +16,7 @@ objectives:
 - "Be able to distinguish between class and object"
 - "Be able to construct objects via a class's constructor"
 keypoints:
-- "`list` and `numpy.ndarray` are commonly-used classes; lists and arrays are corresponding objects"
+- "`list` and `numpy.ndarray` are commonly-used classes; specific lists and arrays are corresponding objects"
 - "Calling the class as a function constructs new objects of that class"
 - "Objects have members and methods; members are attributes and methods dictate the behaviour of the object"
 - "Classes can inherit from other classes; objects of the subclass are automatically also of the parent class"
@@ -34,11 +34,18 @@ Object oriented programming exists in other languages (C++, Java and Fortran). M
 
 ## But...what is an object?
 
-An object is a way of packaging data. Instead of holding a single number, an object may hold a collection of data, numbers, strings and perhaps other objects. The content of an object can be manipulated collectively as a single entity, for instance passed as one argument to a function. 
+An object is a way of packaging data. Instead of holding a single number, an object may hold a collection of data, numbers, strings and perhaps other objects. The content of an object can be manipulated collectively as a single entity, for instance passed as one argument to a function.
+
+> ## Provide an example of object in Python
+>
+>> ## Solution
+>> Everything that can be stored as a variable is an object in Python. This is true for a character string, a list, a dictionay, a function but also numbers. A number has real and imaginary parts.
+> {: .solution}
+{: .challenge}
 
 ## When should I use object oriented programming?
 
-Object oriented programming allows you to perform complex tasks sometimes in more efficient way.
+Object oriented programming allows you to perform complex tasks in simpler way, sometimes in more efficient way.
 
 Consider for example a plotting package. Plotting data typically involves many fine grained operations (creating the plot, adding axis labels, title, legend etc.). On could write a function that performs all these operations with a single call. However, this function would take a lot of arguments to control all aspects of plotting. What if you wanted to change the title? You would have to call the function again with the same arguments except for one small change. This is error prone but also inefficient since most of the plot was fine and only minor tweaking was needed.
 
@@ -113,6 +120,8 @@ def fit_and_predict(Xtrain, ytrain, Xpred):
 {: .language-python}
 the object oriented design provides additional advantages. Specifically, the `predict` operation can be called as many times as desired once the model is fitted. In many machine learning algorithms, predicting values is cheap compared to fitting. Therefore, by separating the `fit` and the `predict` calls we can be more efficient.
 
+Note that the reason we can chain LinearRegression, fit and predict together is because the `fit` call returns the object. 
+
 > ## Discuss the pros/cons of objected oriented programming over procedural programming
 >
 >> ## Solution
@@ -128,12 +137,11 @@ the object oriented design provides additional advantages. Specifically, the `pr
 ## What are classes, instances, members and methods?
 
 >## Class
-> A _class_ is a type of object. It is the answer to the question "what is ...?"
+> A _class_ is a type of object. It is the answer to the question "what is ...?". To use a real world example, we could have a class `Handbag` that describes all types of handbags. Question: "what is that object?". Answer: "It's a `HandBag`".
 {: .callout}
 
 >## Instance
-> We say that an object of a particular class is an _instance_ of that class. 
-> To use a real world example, we could have a class `Handbag` that describes all types of handbags. The one you're holding right now is an _instance_ of the `Handbag` class.
+> We say that an object of a particular class is an _instance_ of that class. The handbag you're holding right now is an _instance_ of the `Handbag` class.
 {: .callout}
 
 > ## Member
@@ -218,8 +226,9 @@ numbers.shape
 
 > ## Other common classes
 >
-> What other classes have you encountered previously when using Python?
-> What methods did they provide?
+> 1. What other classes have you encountered previously when using Python?
+> 2. What members do these classes contain?
+> 3. What methods do they provide?
 {: .challenge}
 
 ## Making an object
