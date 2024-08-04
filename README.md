@@ -20,6 +20,8 @@ To build the material, do:
 You might need to install ruby and bundler, see [here](https://www.geeksforgeeks.org/how-to-install-ruby-bundler-on-linux/) on how to install these packages on Ubuntu.
 "make serve" will serve the pages at http://127.0.0.1:4000.
 
+The material can be access [here](https://USERNAME.github.io/python-oop-novice/index.html) where USERNAME is your Github username.
+
 
 We'd like to ask you to familiarize yourself with our [Contribution Guide](CONTRIBUTING.md) and have a look at
 the [more detailed guidelines][lesson-example] on proper formatting, ways to render the lesson locally, and even
