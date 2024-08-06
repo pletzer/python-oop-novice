@@ -36,7 +36,7 @@ Object oriented programming exists in other languages (C++, Java and Fortran). M
 
 An object is a way of packaging data. Instead of holding a single number, an object may hold a collection of data, numbers, strings and perhaps other objects. The content of an object can be manipulated collectively as a single entity, for instance passed as one argument to a function.
 
-> ## Provide an example of object in Python
+> ## Provide an example of an object in Python
 >
 >> ## Solution
 >> Everything that can be stored as a variable is an object in Python. This is true for a character string, a list, a dictionay, a function but also numbers. A number has real and imaginary parts.
