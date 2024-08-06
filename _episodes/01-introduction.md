@@ -122,7 +122,7 @@ the object oriented design provides additional advantages. Specifically, the `pr
 
 Note that the reason we can chain LinearRegression, fit and predict together is because the `fit` call returns the object. 
 
-> ## Discuss the pros/cons of objected oriented programming over procedural programming
+> ## Discuss the pros/cons of object oriented programming over procedural programming
 >
 >> ## Solution
 >> This is not an exhaustive list but here are some differences:
