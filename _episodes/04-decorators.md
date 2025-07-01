@@ -102,8 +102,10 @@ conversation()
 
 Using `@` followed by the name of the altering function (`track_this`
 in this case), and placing this before the function definition, Python
-takes the result of calling the altering function and overwrites the
-new function with it.
+applies the altering function to the function. This is useful when 
+measuring the execution time of a function, for instance. The caller 
+does not have to be changed, only the implementation of the function
+we want to profile needs to be modified.
 
 This syntax is called a "decorator"; the functions `say_hello`,
 `say_goodbye`, and `conversation` have been decorated with the
