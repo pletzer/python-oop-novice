@@ -328,7 +328,7 @@ increasingly complex and build up functionality in layers.
 >
 > In the previous episode, we wrote a `QuadraticPlotter` class for
 > plotting quadratic functions. We know, however, that quadratics are
-> not the only type of polynomial in the world.
+> not the only type of polynomials in the world.
 >
 > Write a `PolynomialPlotter` class similar to `QuadraticPlotter`, and
 > rewrite `QuadraticPlotter` to be a subclass of it.
