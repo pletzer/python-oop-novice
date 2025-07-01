@@ -152,10 +152,10 @@ a problem when we try and decorate a function that takes arguments:
 >
 > The `*` and `**` here carry two meanings. In the definition `def
 > new_function(*args, **kwargs)`, they mean "take any positional
-> arguments and put them into a list called `args`, and take any
+> arguments and put them into a tuple called `args`, and take any
 > keyword arguments and put them into a dict called `kwargs`. In the
 > function call `function(*args, **kwargs)`, they mean "pass each
-> element of the list `args` as a separate argument, and pass each
+> element of `args` as a separate argument, and pass each
 > element of the dict `kwargs` as a keyword argument.
 >
 > You can also write and use decorators that themselves accept
