@@ -5,7 +5,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 ---
 
 Object-oriented programming is a popular technique for structuring software,
-particularly in larger software projects being developed by larger groups
+particularly in larger software projects being developed by groups
 of people. In this lesson we will use the tools for object-oriented programming
 provided by the Python programming language to learn how it can be used
 to write modular, reusable components for research software.
