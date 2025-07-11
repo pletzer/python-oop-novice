@@ -14,9 +14,7 @@ to write modular, reusable software components.
 > This lesson assumes some level of familiarity with the Python programming
 > language. If you have not previously used Python, and in particular if you
 > are unfamiliar with programming in general, then we would recommend reading
-> through Software Carpentry's introductory 
-> [Programming with Python][swc-python] lesson before
-> embarking on this one.
+> [Short Introduction to Programming in Python](https://datacarpentry.github.io/python-ecology-lesson/01-short-introduction-to-Python.html).
 {: .prereq}
 
 {% include links.md %}
