@@ -357,6 +357,18 @@ inherit it.)
 > {: .solution}
 {: .challenge}
 
+> ## `dataclass` and hashing
+>
+> If a class is built with `@dataclass(frozen=True)` (see the previous
+> episode), Python generates `__hash__` for you as well, based on the
+> same fields used for `__eq__`&mdash;`frozen=True` also makes instances
+> immutable, which is a requirement for anything used as a dict key or
+> set member. `Polygon` isn't a good fit for this as written, since its
+> `__init__` filters and validates `side_lengths` rather than storing it
+> as a plain field; `dataclasses` supports that too via a
+> `__post_init__` method, but that's beyond what we'll cover here.
+{: .callout}
+
 
 ## Composition
 
