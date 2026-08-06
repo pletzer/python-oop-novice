@@ -17,8 +17,33 @@ To build the material, do:
  * cd python-oop-novice
  * make serve
 
-You might need to install ruby and bundler, see [here](https://www.geeksforgeeks.org/how-to-install-ruby-bundler-on-linux/) on how to install these packages on Ubuntu.
 "make serve" will serve the pages at http://127.0.0.1:4000.
+
+### Ruby/Jekyll setup
+
+This lesson site is built with Jekyll via `bundle`/`gem` (Ruby), not Python — `make serve`
+does not need a Python virtualenv or `requirements.txt`. On Ubuntu, see
+[this guide](https://www.geeksforgeeks.org/how-to-install-ruby-bundler-on-linux/) for installing
+Ruby and Bundler.
+
+**On macOS**, the system Ruby is too old, and Homebrew's current `ruby` (Ruby 3.2+) is *also* too
+new: the `github-pages` gem pins `liquid 4.0.3`, which calls `String#tainted?` — a method Ruby
+removed in 3.2. The last Ruby that still has it (and satisfies `github-pages`'s `ffi >= 3.0`
+requirement) is the **3.1.x** series:
+
+~~~ bash
+brew install ruby@3.1
+export PATH="/opt/homebrew/opt/ruby@3.1/bin:$PATH"   # put this in ~/.zshrc to persist
+export LANG=en_US.UTF-8                              # avoids a Sass "Invalid US-ASCII character" build error
+export LC_ALL=en_US.UTF-8
+cd python-oop-novice
+make serve
+~~~
+
+(`ruby@3.1` is a deprecated Homebrew formula, so `brew install ruby@3.1` may stop working once
+Homebrew removes it — at that point the fix is either patching `String#tainted?`/`#taint` as
+no-ops in a small Ruby file Jekyll auto-loads, or dropping the `github-pages` gem for a plain
+`jekyll` + explicit plugin list in the `Gemfile`.)
 
 The material can be access [here](https://USERNAME.github.io/python-oop-novice/index.html) where USERNAME is your Github username.
 
