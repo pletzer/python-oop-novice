@@ -39,15 +39,15 @@ An object is a way of packaging data. Instead of holding a single number, an obj
 > ## Provide an example of an object in Python
 >
 >> ## Solution
->> Everything that can be stored as a variable is an object in Python. This is true for a character string, a list, a dictionay, a function but also numbers. A number has real and imaginary parts.
+>> Everything that can be stored as a variable is an object in Python. This is true for a character string, a list, a dictionary, a function but also numbers. A number has real and imaginary parts.
 > {: .solution}
 {: .challenge}
 
 ## When should I use object oriented programming?
 
-Object oriented programming allows you to perform complex tasks in simpler way, sometimes in more efficient way.
+Object oriented programming allows you to perform complex tasks in a simpler way, sometimes in a more efficient way.
 
-Consider for example a plotting package. Plotting data typically involves many fine grained operations (creating the plot, adding axis labels, title, legend etc.). On could write a function that performs all these operations with a single call. However, this function would take a lot of arguments to control all aspects of plotting. What if you wanted to change the title? You would have to call the function again with the same arguments except for one small change. This is error prone but also inefficient since most of the plot was fine and only minor tweaking was needed.
+Consider for example a plotting package. Plotting data typically involves many fine grained operations (creating the plot, adding axis labels, title, legend etc.). One could write a function that performs all these operations with a single call. However, this function would take a lot of arguments to control all aspects of plotting. What if you wanted to change the title? You would have to call the function again with the same arguments except for one small change. This is error prone but also inefficient since most of the plot was fine and only minor tweaking was needed.
 
 You may face the dilemma of using a function or a class when implementing code. Using a _procedural_ approach may be the right choice if the code
 
@@ -91,7 +91,7 @@ print(more_numbers.mean())
 ~~~
 ---------------------------------------------------------------------------
 AttributeError                            Traceback (most recent call last)
-Input In [18], in <cell line: 2>()
+Cell In[3], line 2
       1 more_numbers = [1, 2, 3, 4]
 ----> 2 print(more_numbers.mean())
 
@@ -107,8 +107,11 @@ In this case Python will complain with an error. How does Python know it can do 
 The example below shows how object oriented programming lies at the heart of many Python packages. Here, a linear regression model `mymodel` is created, the model is fitted with data and predictive values `ypred` are inferred from the model after it is fitted, 
 ~~~
 from sklearn.linear_model import LinearRegression
+# create a model
 mymodel = LinearRegression(fit_intercept=False)
+# fit/train the model
 mymodel.fit(X=[[1,],[2,]], y=[1, 2])
+# predict/infer the output given some data
 ypred = mymodel.predict(X=[[1.2,],[1.8,], [2.2,]])
 ~~~
 {: .language-python}
@@ -120,7 +123,7 @@ def fit_and_predict(Xtrain, ytrain, Xpred):
 {: .language-python}
 the object oriented design provides additional advantages. Specifically, the `predict` operation can be called as many times as desired once the model is fitted. In many machine learning algorithms, predicting values is cheap compared to fitting. Therefore, by separating the `fit` and the `predict` calls we can be more efficient.
 
-Note that the reason we can chain LinearRegression, fit and predict together is because the `fit` call returns the object. 
+Note that the reason we can chain LinearRegression, fit and predict together is that the `fit` call returns the object. 
 
 > ## Discuss the pros/cons of object oriented programming over procedural programming
 >
@@ -137,7 +140,7 @@ Note that the reason we can chain LinearRegression, fit and predict together is 
 ## What are classes, instances, members and methods?
 
 >## Class
-> A _class_ is a type of object. It is the answer to the question "what is ...?". To use a real world example, we could have a class `Handbag` that describes all types of handbags. Question: "what is that object?". Answer: "It's a `HandBag`".
+> A _class_ is a type of object. It is the answer to the question "what is ...?". To use a real-world example, we could have a class `Handbag` that describes all types of handbags. Question: "what is that object?". Answer: "It's a `HandBag`".
 {: .callout}
 
 >## Instance
@@ -154,12 +157,16 @@ Note that the reason we can chain LinearRegression, fit and predict together is 
 > can swing it into the face of your worst enemy. These actions are called _methods_.
 {: .callout}
 
+{% include image.html url="../assets/img/handbag-anatomy.svg"
+alt="Cartoon illustration of a handbag with arrows pointing to its
+labelled parts: the handle, the zipper, and the strap"
+caption="Some of the members of the Handbag class: its handle, zipper, and strap."%}
 
 ## Finding out to which class an object belongs to
 
 In literature, you'll find a subtle
 distinction between _class_ and _type_. However, since in Python 3
-we can't have one without the other, we will use both terms interchangably.
+we can't have one without the other, we will use both terms interchangeably.
 
 We can obtain the type of an object with the `type` function.
 
@@ -203,7 +210,7 @@ numbers.mean()
 ~~~
 {: .language-python}
 
-We say that the `numpy.ndarray` class provides the `mean` _method_. Since `numbers` belongs to the class `numpy.ndarray`, we can use the `mean` method on the object referred to by `numbers`, by calling `numbers.mean()`. This allows objects of a `numpy.ndarray` to provide functionality specific to objects of class `numpy.ndarray`.
+We say that the `numpy.ndarray` class provides the `mean` _method_. Since `numbers` belongs to the class `numpy.ndarray`, we can use the `mean` method on the object referred to by `numbers`, by calling `numbers.mean()`. This allows objects of the `numpy.ndarray` class to provide functionality specific to objects of class `numpy.ndarray`.
 
 Every instance of `numpy.ndarray` has a member `shape`, which holds the dimensions of the underlying data.
 
@@ -267,7 +274,7 @@ Now that we know how to create objects (i.e. instances of a class), we may want 
  1. What's in the object
  2. And what can we do with an object.
 
-Python is unique in that it let's you peek inside the object. This is known as introspection. The content of an object can be gleaned with the `dir` function. For instance,
+Python is unique in that it lets you peek inside the object. This is known as introspection. The content of an object can be gleaned with the `dir` function. For instance,
 
 ~~~
 dir(students)
@@ -288,7 +295,7 @@ builtin_function_or_method
 
 Object-oriented programming allows relationships to be defined between classes/types.
 One class may be considered to be a specialisation or _subclass_ of another.
-For a real world example, a car could be considered a specialisation or subclass of the class of all vehicles.
+For a real-world example, a car could be considered a specialisation or subclass of the class of all vehicles.
 
 This is very frequently seen in the way Python handles exceptions. For example,
 if we check what type a `ValueError` is, we see that it is of

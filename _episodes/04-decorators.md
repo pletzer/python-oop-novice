@@ -126,13 +126,15 @@ a problem when we try and decorate a function that takes arguments:
 > {: .language-python}
 >
 > ~~~
+> ---------------------------------------------------------------------------
 > TypeError                                 Traceback (most recent call last)
-> <ipython-input-29-000c7283eed1> in <module>()
+> Cell In[2], line 5
+>       1 @track_this
+>       2 def say_something(thing_to_say):
 >       3     print(thing_to_say)
->       4
 > ----> 5 say_something("Hello there")
 >
-> TypeError: new_function() takes 0 positional arguments but 1 was given
+> TypeError: track_this.<locals>.new_function() takes 0 positional arguments but 1 was given
 > ~~~
 > {: .output}
 >
@@ -153,10 +155,10 @@ a problem when we try and decorate a function that takes arguments:
 > The `*` and `**` here carry two meanings. In the definition `def
 > new_function(*args, **kwargs)`, they mean "take any positional
 > arguments and put them into a tuple called `args`, and take any
-> keyword arguments and put them into a dict called `kwargs`. In the
+> keyword arguments and put them into a dict called `kwargs`." In the
 > function call `function(*args, **kwargs)`, they mean "pass each
 > element of `args` as a separate argument, and pass each
-> element of the dict `kwargs` as a keyword argument.
+> element of the dict `kwargs` as a keyword argument."
 >
 > You can also write and use decorators that themselves accept
 > arguments by using a nested function definition, but we won't go
@@ -344,11 +346,19 @@ print(a_triangle.area())
 {: .language-python}
 
 ~~~
-     11     def area(self):
-     12         """Returns the area of the triangle."""
----> 13         a, b, c = self.side_lengths
-     14         p = (a + b + c) / 2
-     15         return (p * (p - a) * (p - b) * (p - c)) ** 0.5
+---------------------------------------------------------------------------
+ValueError                                Traceback (most recent call last)
+Cell In[2], line 3
+      1 a_triangle = Triangle([3, 4, 5])
+      2 a_triangle.side_lengths = [3, 4, 5, 6]
+----> 3 print(a_triangle.area())
+
+Cell In[1], line 21, in Triangle.area(self)
+     19 def area(self):
+     20     """Returns the area of the triangle."""
+---> 21     a, b, c = self.side_lengths
+     22     p = (a + b + c) / 2
+     23     return (p * (p - a) * (p - b) * (p - c)) ** 0.5
 
 ValueError: too many values to unpack (expected 3)
 ~~~
@@ -367,18 +377,17 @@ a_polygon.perimeter()
 {: .language-python}
 
 ~~~
+---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-<ipython-input-50-9b8ffd74de36> in <module>()
+Cell In[3], line 3
       1 a_polygon = Polygon([1, 2, 3, 4, 5])
       2 a_polygon.side_lengths = "spam and eggs"
 ----> 3 a_polygon.perimeter()
 
-<ipython-input-49-5ae60040e7be> in perimeter(self)
-     10     def perimeter(self):
-     11         """Returns the perimeter of the polygon."""
----> 12         return sum(self.side_lengths)
-     13
-     14
+Cell In[1], line 7, in Polygon.perimeter(self)
+      5 def perimeter(self):
+      6     """Returns the perimeter of the polygon."""
+----> 7     return sum(self.side_lengths)
 
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ~~~
@@ -387,7 +396,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 It doesn't make sense to take the sum of a string (or more precisely,
 to add the individual characters together), so this also fails.
 
-One way to fix this is to signal that this shouldn't happen is to mark
+One way to signal that this shouldn't happen is to mark
 `side_lengths` as private by renaming it to `_side_lengths`. However,
 this removes some potentially useful functionality&mdash;it would
 definitely be useful for a user of the class to be able to read the
@@ -441,13 +450,12 @@ a_polygon.side_lengths = "spam and eggs"
 {: .language-python}
 
 ~~~
+---------------------------------------------------------------------------
 AttributeError                            Traceback (most recent call last)
-<ipython-input-57-9b8ffd74de36> in <module>()
-      1 a_polygon = Polygon([1, 2, 3, 4, 5])
-----> 2 a_polygon.side_lengths = "spam and eggs"
-      3 a_polygon.perimeter()
+Cell In[3], line 1
+----> 1 a_polygon.side_lengths = "spam and eggs"
 
-AttributeError: can't set attribute
+AttributeError: property 'side_lengths' of 'Polygon' object has no setter
 ~~~
 {: .output}
 
@@ -491,7 +499,7 @@ class Polygon:
 ~~~
 {: .language-python}
 
-We've moved the validation logic into the method `side_length`, as
+We've moved the validation logic into the method `side_lengths`, as
 decorated by the `@side_lengths.setter` decorator, and the `__init__`
 method uses this to do its initial setup. Testing this:
 
@@ -513,7 +521,7 @@ Modified perimeter: 21
 >
 > Adjust the `FunctionPlotter`, `PolynomialPlotter`, or
 > `QuadraticPlotter` example from earlier to make `color` a property,
-> with a getter and a setter, with the setter checking that the the
+> with a getter and a setter, with the setter checking that the
 > color is a valid matplotlib color.
 >
 >> ## Solution

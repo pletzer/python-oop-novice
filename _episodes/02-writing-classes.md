@@ -20,7 +20,7 @@ keypoints:
 
 In the previous section, we've seen how objects can have different behaviour, provided by methods.
 
-In this episode we will learn how to write own classes.
+In this episode we will learn how to write our own classes.
 
 Let's assume that we want to write a linear regression class, which should behave similarly to `sklearn.linear_model.LinearRegression`. That is, the class should have `fit` and `predict` methods. Here is a possible implementation:
 
@@ -47,7 +47,7 @@ class MyLinearRegression:
 
 First we define the class with the `class` keyword. The name of the class is `MyLinearRegression`. The class has one attribute, `self.coef_`, which represents the least square coefficients. Initially, we don't know how many coefficients there will be so we initialise `self.coef_` to an empty list.
 
-Next we implement two methods: `fit` and `predict` that take the same arguments as the correspong methods in `sklearn.linear_model.LinearRegression`. The `fit` method does not return anything, it computes the linear square coefficients. The `predict` method takes data values and computes the "best" estimates for those values.
+Next we implement two methods: `fit` and `predict` that take the same arguments as the corresponding methods in `sklearn.linear_model.LinearRegression`. The `fit` method does not return anything, it computes the linear square coefficients. The `predict` method takes data values and computes the "best" estimates for those values.
 
 You may wonder what the `__init__` method does? This is a special method used to construct the object (`__init__` is called the constructor). In this case `__init__` does not take any arguments (but it can like any other function). 
 
@@ -88,7 +88,7 @@ ypred = mymodel2.predict(X=[[1.2,],[1.8,], [2.2,]])
 ~~~
 {: .language-python}
 
-Note that our new class behaves the same way as `sklearn.linear_model.LinearRegression`, which we used in the previous episode. We could use `MyLinearRegression` in place of `sklearn.linear_model.LinearRegression` in our scripts. The changes would be minimal because both `MyLinearRegression` and `sklearn.linear_model.LinearRegression` mostly conform to the same application program interface. 
+Note that our new class behaves the same way as `sklearn.linear_model.LinearRegression`, which we used in the previous episode. We could use `MyLinearRegression` in place of `sklearn.linear_model.LinearRegression` in our scripts. The changes would be minimal because both `MyLinearRegression` and `sklearn.linear_model.LinearRegression` mostly conform to the same application programming interface. 
 
 > ## Problem
 >
@@ -139,7 +139,7 @@ class MyLinearRegression2(LinearRegression):
 ~~~
 {: .language-python}
 
-Note the `class` statement, followed by the class name and, in parentheses, the parent class (`LinearRegression` in this case). If you invoke a method of an instance the interpreter will look for the implementation of the method in the class.  If the interpreter cannot find the method inside the class,  it will look for the method in the parent class (or the parent of the parent if the parent is also a derived class). 
+Note the `class` statement, followed by the class name and, in parentheses, the parent class (`LinearRegression` in this case). If you invoke a method of an instance, the interpreter will look for the implementation of the method in the class. If the interpreter cannot find the method inside the class, it will look for the method in the parent class (or the parent of the parent if the parent is also a derived class). 
 
 That's great news because we don't have to implement `predict` as this method will be found in class `LinearRegression`. This can save a lot of coding. Shorter code generally means fewer bugs.
 
