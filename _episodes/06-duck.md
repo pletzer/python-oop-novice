@@ -6,6 +6,8 @@ questions:
 - "How does Python decide what you can and can't do with an object?"
 - "When is inheritance not appropriate?"
 - "What alternatives are there to inheritance?"
+- "How can I formalise an interface without forcing classes to inherit
+  from anything?"
 objectives:
 - "Understand how duck typing works, and how interfaces assist with
   understanding this."
@@ -13,6 +15,8 @@ objectives:
   rather than a help."
 - "Be aware of concepts such as composition which can help where
   inheritance fails."
+- "Be able to use `typing.Protocol` to describe an interface
+  structurally, as an alternative to an abstract base class."
 keypoints:
 - "Provided a class exposes all required functionality for an
   operation to work, Python allows it."
@@ -20,6 +24,9 @@ keypoints:
   the same kind of thing as the superclass."
 - "Implementing interfaces and adding functionality with composition
   can be better alternatives to inheritance in some cases."
+- "`typing.Protocol` describes an interface structurally (by the
+  methods a class has); abstract base classes like `abc.Iterator`
+  describe one nominally (by what a class explicitly inherits from)."
 ---
 
 There is a principle that if something "looks like a duck, and swims
@@ -300,14 +307,15 @@ for number in FibonacciIterator(100):
 In this case Python gives us an error:
 
 ~~~
+---------------------------------------------------------------------------
 TypeError                                 Traceback (most recent call last)
-<ipython-input-3-a96ac2788df3> in <module>
-      5         self.last_two_numbers = (1, 0)
-      6
-----> 7 for number in FibonacciIterator(100):
-      8     print(number)
+Cell In[1], line 10
+      7     def __iter__(self):
+      8         return self
+---> 10 for number in FibonacciIterator(100):
+     11     print(number)
 
-TypeError: Can't instantiate abstract class FibonacciIterator with abstract methods __next__
+TypeError: Can't instantiate abstract class FibonacciIterator without an implementation for abstract method '__next__'
 ~~~
 {: .output}
 
@@ -315,6 +323,64 @@ This can be useful when working with more complex interfaces. (On the
 other hand, removing the `__iter__()` method works fine, because
 `abc.Iterator` helpfully defines `__iter__()` for us, so we can
 inherit it.)
+
+
+## Structural typing with `typing.Protocol`
+
+Abstract base classes like `abc.Iterator` check that a class implements
+a protocol via _inheritance_: to count as an iterator, a class must
+explicitly subclass `Iterator`. This is sometimes called _nominal_
+typing&mdash;what matters is the declared type of the class, not just
+what it can do.
+
+Python's `typing` module offers a more duck-typed alternative:
+`Protocol` (added in Python 3.8 by [PEP 544][pep-544]), which uses
+_structural_ typing instead. A class satisfies a `Protocol` simply by
+having the right methods, with no inheritance, and no reference to the
+`Protocol` at all, required.
+
+~~~
+from typing import Protocol
+
+class SupportsArea(Protocol):
+    def area(self) -> float: ...
+
+def print_area(shape: SupportsArea) -> None:
+    print(f"Area: {shape.area()}")
+~~~
+{: .language-python}
+
+~~~
+print_area(Triangle([3, 4, 5]))
+~~~
+{: .language-python}
+
+~~~
+Area: 6.0
+~~~
+{: .output}
+
+`Triangle` satisfies `SupportsArea` even though it was written long
+before `SupportsArea` existed, and doesn't inherit from it&mdash;it
+just happens to have an `area()` method that returns a number. Static
+type checkers (such as mypy) understand `Protocol`, and would flag a
+call like `print_area(3)` as an error, without `Triangle` (or `int`)
+needing to know that `SupportsArea` exists.
+
+> ## `Protocol` vs. abstract base classes
+>
+> Reach for an abstract base class (like `abc.Iterator`) when you want
+> Python itself to refuse, at instance-creation time, to construct an
+> object that doesn't implement the required methods&mdash;this is
+> useful for classes you control, where subclasses are expected to
+> explicitly commit to a shared parent. Reach for `Protocol` when you
+> want to describe "any object that can do X" without forcing unrelated
+> classes to inherit from a common base&mdash;this is especially useful
+> for objects you don't control (from other libraries, or built-in
+> types) that you can't retroactively make inherit from anything.
+{: .callout}
+
+[pep-544]: https://peps.python.org/pep-0544/
 
 > ## Implementing multiple interfaces
 >

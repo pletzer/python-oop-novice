@@ -91,7 +91,7 @@ print(more_numbers.mean())
 ~~~
 ---------------------------------------------------------------------------
 AttributeError                            Traceback (most recent call last)
-Input In [18], in <cell line: 2>()
+Cell In[3], line 2
       1 more_numbers = [1, 2, 3, 4]
 ----> 2 print(more_numbers.mean())
 

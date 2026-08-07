@@ -198,6 +198,11 @@ increasingly complex and build up functionality in layers.
 >     raise NotImplementedError
 > ~~~
 > {: .language-python}
+>
+> This only raises an error once someone actually *calls* the missing
+> method. Later on, we'll meet a stricter version of the same idea,
+> abstract base classes, which instead stop you from creating an
+> instance of a subclass at all if it's missing a required method.
 {: .callout}
 
 > ## Inheriting from `object`
@@ -252,7 +257,7 @@ increasingly complex and build up functionality in layers.
 >>         """Returns the perimeter of the polygon."""
 >>         return sum(self.side_lengths)
 >>
->>  class Triangle(Polygon):
+>> class Triangle(Polygon):
 >>     def __init__(self, side_lengths):
 >>         # Triangles have three sides
 >>         super().__init__(side_lengths)
@@ -276,17 +281,16 @@ increasingly complex and build up functionality in layers.
 >> Area: 6.0
 >> ---------------------------------------------------------------------------
 >> AssertionError                            Traceback (most recent call last)
->> <ipython-input-17-751f0372a229> in <module>()
+>> Cell In[1], line 29
 >>      27 print("Perimeter:", a_triangle.perimeter())
 >>      28 print("Area:", a_triangle.area())
 >> ---> 29 b_triangle = Triangle([3, 4, 0])
 >>
->> <ipython-input-17-751f0372a229> in __init__(self, side_lengths)
->>      16         # Triangles have three sides
->>      17         super().__init__(side_lengths)
->> ---> 18         assert len(self.side_lengths) == 3
->>      19
->>      20     def area(self):
+>> Cell In[1], line 18, in Triangle.__init__(self, side_lengths)
+>>      15 def __init__(self, side_lengths):
+>>      16     # Triangles have three sides
+>>      17     super().__init__(side_lengths)
+>> ---> 18     assert len(self.side_lengths) == 3
 >>
 >> AssertionError:
 >> ~~~
