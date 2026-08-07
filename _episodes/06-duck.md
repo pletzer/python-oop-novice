@@ -263,7 +263,7 @@ for number in FibonacciIterator(100):
 >> and `QuadraticPlotter.plot()` are all different&mdash;one expects a
 >> callable, one expects a list of coefficients as one argument, and
 >> one expects three coefficients as separate arguments. In general,
->> specialistations of a class should keep the same interface to its
+>> specialisations of a class should keep the same interface to its
 >> functions, and the parent class should be interchangeable with its
 >> specialisations.
 > {: .solution}
@@ -452,7 +452,7 @@ of the simplified `pyplot` version.
 
 To get a feel for how Matplotlib uses composition to separate its
 concerns while having a large amount of functionality, we can write a
-small test function to recursively walk through a member variables of
+small test function to recursively walk through the member variables of
 an object that are themselves instances of a non-builtin class.
 
 ~~~
@@ -476,7 +476,7 @@ fig, ax = plt.subplots()
 ax.scatter([1, 2, 3], [1, 4, 9])
 ax.scatter([1, 1.5, 2, 2.5, 3], [1, 1, 2, 3, 5])
 
-# Inspect the object hierarchy of ths figure object
+# Inspect the object hierarchy of this figure object
 traverse_objects(fig)
 ~~~
 {: .language-python}

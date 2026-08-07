@@ -331,7 +331,7 @@ class Triangle(Polygon):
 > ## Sorting random triangles
 >
 > Add a class method that generates a triangle with three random edge
-> lengths (for example, using `random.random()`. Use this to construct
+> lengths (for example, using `random.random()`). Use this to construct
 > and sort a list of 10 random triangles.
 >
 >> ## Solution
@@ -659,7 +659,7 @@ for side_length in a_polygon:
 > Once a class has `__getitem__()` defined, then Python will
 > automatically work out how to loop over it, even in the absence of
 > `__iter__()` (although adding this does make it more
-> efficient). Even beter, when `__len__()` is also implemented, then
+> efficient). Even better, when `__len__()` is also implemented, then
 > Python automatically knows how to `reversed()` the class as well.
 >
 > Test this by removing the implementations of `__iter__()` and

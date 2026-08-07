@@ -3,8 +3,8 @@ title: "More on inheritance"
 teaching: 20
 exercises: 20
 questions:
-- "How can classe relationships where one represents a specific subset
-of another be represented?"
+- "How can class relationships, where one represents a specific subset
+of another, be represented?"
 - "How can functionality on one class be overridden or extended by its
 children?"
 objectives:
@@ -16,8 +16,8 @@ keypoints:
 - "Adding a class in parentheses after a class definition indicates
 that the new class is a subclass of the bracketed class (parent class)."
 - "The subclass inherits all of that parent class's attributes and methods."
-- "Defining a method with the same name as one of the parent class's overrides
-it."
+- "Defining a method with the same name as one of the parent class's methods
+overrides it."
 - "Use `super()` to access parent classes and their methods."
 ---
 
@@ -25,7 +25,7 @@ We have talked about using classes as a way to reduce repetition in the
 software we write. However, what happens if we want to write two classes that
 do similar but distinct things? 
 
-Thankfully, Python (and most other languages that have classes) give us a
+Thankfully, Python (and most other languages that have classes) gives us a
 mechanism to avoid this in the form of _inheritance_. A class that inherits
 from a second class automatically gains all of the second's attributes and
 methods. The class that is being inherited from is called the _parent class_,
@@ -187,8 +187,8 @@ increasingly complex and build up functionality in layers.
 
 > ## Not implemented
 >
-> If we anticipate a lot of subclasses may provide a particular
-> method, but we can't or don't want to provide it on the superclass,
+> If we anticipate subclasses may provide a particular
+> method, which cannot be implemented in the superclass,
 > we can add a stub method that raises `NotImplementedError` instead,
 > so that it becomes clear if an implementation has been
 > forgotten. For example, the `area` method of `Polygon` could be:
@@ -203,16 +203,6 @@ increasingly complex and build up functionality in layers.
 > method. Later on, we'll meet a stricter version of the same idea,
 > abstract base classes, which instead stop you from creating an
 > instance of a subclass at all if it's missing a required method.
-{: .callout}
-
-> ## Inheriting from `object`
->
-> Sometimes in older Python you will see classes inherit from
-> `object`. This is a holdover from Python 2, where this was needed to
-> create a "new-style" class instead of an "old-style"
-> class. Old-style classes were removed in Python 3, with all classes
-> being new-style ones which inherit from `object` automatically, so
-> you don't need to (and shouldn't) do this any more.
 {: .callout}
 
 > ## `super()` placement
@@ -332,7 +322,7 @@ increasingly complex and build up functionality in layers.
 >
 > In the previous episode, we wrote a `QuadraticPlotter` class for
 > plotting quadratic functions. We know, however, that quadratics are
-> not the only type of polynomials in the world.
+> not the only type of polynomial in the world.
 >
 > Write a `PolynomialPlotter` class similar to `QuadraticPlotter`, and
 > rewrite `QuadraticPlotter` to be a subclass of it.

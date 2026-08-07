@@ -155,10 +155,10 @@ a problem when we try and decorate a function that takes arguments:
 > The `*` and `**` here carry two meanings. In the definition `def
 > new_function(*args, **kwargs)`, they mean "take any positional
 > arguments and put them into a tuple called `args`, and take any
-> keyword arguments and put them into a dict called `kwargs`. In the
+> keyword arguments and put them into a dict called `kwargs`." In the
 > function call `function(*args, **kwargs)`, they mean "pass each
 > element of `args` as a separate argument, and pass each
-> element of the dict `kwargs` as a keyword argument.
+> element of the dict `kwargs` as a keyword argument."
 >
 > You can also write and use decorators that themselves accept
 > arguments by using a nested function definition, but we won't go
@@ -396,7 +396,7 @@ TypeError: unsupported operand type(s) for +: 'int' and 'str'
 It doesn't make sense to take the sum of a string (or more precisely,
 to add the individual characters together), so this also fails.
 
-One way to fix this is to signal that this shouldn't happen is to mark
+One way to signal that this shouldn't happen is to mark
 `side_lengths` as private by renaming it to `_side_lengths`. However,
 this removes some potentially useful functionality&mdash;it would
 definitely be useful for a user of the class to be able to read the
@@ -499,7 +499,7 @@ class Polygon:
 ~~~
 {: .language-python}
 
-We've moved the validation logic into the method `side_length`, as
+We've moved the validation logic into the method `side_lengths`, as
 decorated by the `@side_lengths.setter` decorator, and the `__init__`
 method uses this to do its initial setup. Testing this:
 
@@ -521,7 +521,7 @@ Modified perimeter: 21
 >
 > Adjust the `FunctionPlotter`, `PolynomialPlotter`, or
 > `QuadraticPlotter` example from earlier to make `color` a property,
-> with a getter and a setter, with the setter checking that the the
+> with a getter and a setter, with the setter checking that the
 > color is a valid matplotlib color.
 >
 >> ## Solution

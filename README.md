@@ -45,10 +45,10 @@ Homebrew removes it — at that point the fix is either patching `String#tainted
 no-ops in a small Ruby file Jekyll auto-loads, or dropping the `github-pages` gem for a plain
 `jekyll` + explicit plugin list in the `Gemfile`.)
 
-The material can be access [here](https://USERNAME.github.io/python-oop-novice/index.html) where USERNAME is your Github username.
+The material can be accessed [here](https://USERNAME.github.io/python-oop-novice/index.html) where USERNAME is your Github username.
 
 
-We'd like to ask you to familiarize yourself with our [Contribution Guide](CONTRIBUTING.md) and have a look at
+We'd like to ask you to familiarise yourself with our [Contribution Guide](CONTRIBUTING.md) and have a look at
 the [more detailed guidelines][lesson-example] on proper formatting, ways to render the lesson locally, and even
 how to write new episodes.
 
