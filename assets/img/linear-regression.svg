@@ -1,0 +1,79 @@
+<svg width="760" height="560" viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg" role="img"
+     aria-label="Scatter plot of data points with a straight fitted line, labelling the intercept where the line crosses the y-axis and the slope as a rise-over-run triangle">
+  <title>Linear regression: data points, fitted line, intercept, and slope</title>
+  <defs>
+    <marker id="lr-axis-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2b2b"/>
+    </marker>
+    <marker id="lr-callout-arrow" viewBox="0 0 10 10" refX="8" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2b2b2b"/>
+    </marker>
+  </defs>
+
+  <text x="380" y="32" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="22" font-weight="bold" fill="#2b2b2b">Linear regression: y = coef_ &#183; x + intercept_</text>
+
+  <!-- axes -->
+  <line x1="80" y1="420" x2="650" y2="420" stroke="#2b2b2b" stroke-width="3" marker-end="url(#lr-axis-arrow)"/>
+  <line x1="80" y1="420" x2="80" y2="45" stroke="#2b2b2b" stroke-width="3" marker-end="url(#lr-axis-arrow)"/>
+  <text x="660" y="427" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#2b2b2b">x</text>
+  <text x="66" y="40" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#2b2b2b">y</text>
+  <text x="70" y="434" text-anchor="end" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#666">0</text>
+
+  <!-- scattered data points -->
+  <g fill="#3f6fa8" opacity="0.9">
+    <circle cx="112.4" cy="322.8" r="6"/>
+    <circle cx="150.2" cy="351.6" r="6"/>
+    <circle cx="177.2" cy="290.4" r="6"/>
+    <circle cx="209.6" cy="312" r="6"/>
+    <circle cx="247.4" cy="258" r="6"/>
+    <circle cx="279.8" cy="283.2" r="6"/>
+    <circle cx="312.2" cy="225.6" r="6"/>
+    <circle cx="350" cy="250.8" r="6"/>
+    <circle cx="382.4" cy="193.2" r="6"/>
+    <circle cx="414.8" cy="222" r="6"/>
+    <circle cx="452.6" cy="168" r="6"/>
+    <circle cx="479.6" cy="196.8" r="6"/>
+    <circle cx="512" cy="139.2" r="6"/>
+    <circle cx="544.4" cy="164.4" r="6"/>
+    <circle cx="576.8" cy="117.6" r="6"/>
+  </g>
+
+  <!-- fitted line: least-squares fit to the points above, y = 0.68x + 1.83 -->
+  <line x1="80" y1="354.12" x2="620" y2="109.32" stroke="#d1495b" stroke-width="4"/>
+
+  <!-- intercept: guide line + marker -->
+  <line x1="80" y1="420" x2="80" y2="354.12" stroke="#e8a23d" stroke-width="4" stroke-dasharray="7 6"/>
+  <circle cx="80" cy="354.12" r="8" fill="#e8a23d" stroke="#2b2b2b" stroke-width="2"/>
+
+  <!-- intercept callout -->
+  <text x="205" y="80" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="bold" fill="#a8701f">intercept_</text>
+  <text x="205" y="100" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="14" fill="#a8701f">(where the line meets the y-axis)</text>
+  <line x1="205" y1="108" x2="95" y2="341" stroke="#2b2b2b" stroke-width="2" marker-end="url(#lr-callout-arrow)"/>
+
+  <!-- slope triangle: rise over run -->
+  <path d="M242,280.68 L404,280.68 L404,207.24" fill="none" stroke="#555555" stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="323" y="298" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#555555">run</text>
+  <text x="412" y="248" text-anchor="start" font-family="Helvetica, Arial, sans-serif" font-size="15" fill="#555555">rise</text>
+
+  <!-- slope callout -->
+  <text x="530" y="330" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="18" font-weight="bold" fill="#a8324a">coef_</text>
+  <text x="530" y="350" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="14" fill="#a8324a">(slope = rise / run)</text>
+  <line x1="500" y1="322" x2="408" y2="244" stroke="#2b2b2b" stroke-width="2" marker-end="url(#lr-callout-arrow)"/>
+
+  <!-- legend -->
+  <g font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#2b2b2b">
+    <circle cx="130" cy="475" r="6" fill="#3f6fa8"/>
+    <text x="145" y="480">data points</text>
+    <line x1="290" y1="475" x2="330" y2="475" stroke="#d1495b" stroke-width="4"/>
+    <text x="340" y="480">fitted line</text>
+    <circle cx="470" cy="475" r="6" fill="#e8a23d" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="485" y="480">intercept_</text>
+  </g>
+</svg>

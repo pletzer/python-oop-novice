@@ -22,7 +22,17 @@ In the previous section, we've seen how objects can have different behaviour, pr
 
 In this episode we will learn how to write our own classes.
 
-Let's assume that we want to write a linear regression class, which should behave similarly to `sklearn.linear_model.LinearRegression`. That is, the class should have `fit` and `predict` methods. Here is a possible implementation:
+Let's assume that we want to write a linear regression class, which should behave similarly to `sklearn.linear_model.LinearRegression`. That is, the class should have `fit` and `predict` methods.
+
+{% include image.html url="../assets/img/linear-regression.svg"
+alt="Scatter plot of data points with a straight fitted line, labelling
+the intercept where the line crosses the y-axis and the slope as a
+rise-over-run triangle"
+caption="Linear regression fits a straight line y = coef_ &middot; x + intercept_ through a set of data points."%}
+
+A straight line fitted through a set of points has two parameters: the `intercept_`, where the line crosses the y-axis, and the `coef_`, its slope. These are exactly the two attributes `sklearn.linear_model.LinearRegression` exposes after fitting, and the two attributes we'll give our own class below.
+
+Here is a possible implementation:
 
 ~~~
 import numpy
