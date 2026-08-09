@@ -32,9 +32,9 @@
 
   <!-- inheritance arrow (UML generalization: hollow triangle points at the superclass) -->
   <line x1="350" y1="378" x2="350" y2="293" stroke="#2b2b2b" stroke-width="2.5" marker-end="url(#lri-inherit-arrow)"/>
-  <text x="368" y="345" text-anchor="start" font-family="Helvetica, Arial, sans-serif"
+  <text x="400" y="345" text-anchor="start" font-family="Helvetica, Arial, sans-serif"
         font-size="15" font-style="italic" fill="#2b2b2b">inherits from</text>
-  <text x="368" y="364" text-anchor="start" font-family="Helvetica, Arial, sans-serif"
+  <text x="400" y="364" text-anchor="start" font-family="Helvetica, Arial, sans-serif"
         font-size="13" font-style="italic" fill="#666666">(is a LinearRegression)</text>
 
   <!-- child class box: MyLinearRegression2 -->
