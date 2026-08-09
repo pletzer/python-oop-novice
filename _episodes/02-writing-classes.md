@@ -149,6 +149,11 @@ class MyLinearRegression2(LinearRegression):
 ~~~
 {: .language-python}
 
+{% include image.html url="../assets/img/linear-regression-inheritance.svg"
+alt="Class diagram showing MyLinearRegression2 inheriting from sklearn's
+LinearRegression, overriding fit while inheriting predict and score"
+caption="MyLinearRegression2 overrides fit, but predict and score are found by Python in the parent class, LinearRegression, since MyLinearRegression2 doesn't redefine them."%}
+
 Note the `class` statement, followed by the class name and, in parentheses, the parent class (`LinearRegression` in this case). If you invoke a method of an instance, the interpreter will look for the implementation of the method in the class. If the interpreter cannot find the method inside the class, it will look for the method in the parent class (or the parent of the parent if the parent is also a derived class). 
 
 That's great news because we don't have to implement `predict` as this method will be found in class `LinearRegression`. This can save a lot of coding. Shorter code generally means fewer bugs.
