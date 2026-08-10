@@ -58,34 +58,34 @@ You may face the dilemma of using a function or a class when implementing code. 
 
 ## An example showing the difference between procedural and object-oriented programming
 
-In the procedural programming approach, the mean of a Numpy array can be computed by using
-`numpy.mean`,
+In the procedural programming approach, the sum of a Numpy array can be computed by using
+`sum`,
 
 ~~~
 import numpy
 numbers = numpy.arange(10)
-print(numpy.mean(numbers))
+print(sum(numbers))
 ~~~
 {: .language-python}
 
 
-However, we can also calculate the mean of a Numpy array as:
+However, we can also calculate the sum of a Numpy array as:
 
 ~~~
-print(numbers.mean())
+print(numbers.sum())
 ~~~
 {: .language-python}
 
 
 > ## The dot notation
 >
-> Note the `.` (dot) separating the object (`numbers`) from the `mean` method. The dot notation is a common feature of many object oriented programming languages. It means `mean` is a *function that belongs to*. In the first case, `mean` belongs to module `numpy` and in the second case `mean` belongs to object `numbers`. 
+> Note the `.` (dot) separating the object (`numbers`) from the `sum` method. The dot notation is a common feature of many object oriented programming languages. It means `sum` is a *function that belongs to*.
 {: .callout}
 
 Let's see if we can do this with a normal list:
 ~~~
 more_numbers = [1, 2, 3, 4]
-print(more_numbers.mean())
+print(more_numbers.sum())
 ~~~
 {: .language-python}
 ~~~
@@ -93,9 +93,9 @@ print(more_numbers.mean())
 AttributeError                            Traceback (most recent call last)
 Cell In[3], line 2
       1 more_numbers = [1, 2, 3, 4]
-----> 2 print(more_numbers.mean())
+----> 2 print(more_numbers.sum())
 
-AttributeError: 'list' object has no attribute 'mean'
+AttributeError: 'list' object has no attribute 'sum'
 ~~~
 {: .output}
 
@@ -118,7 +118,9 @@ ypred = mymodel.predict(X=[[1.2,],[1.8,], [2.2,]])
 While it would have been possible to write a function that performs the `fit` and `predict` operations together, equivalent to
 ~~~
 def fit_and_predict(Xtrain, ytrain, Xpred):
-    return LinearRegression(fit_intercept=False).fit(X=Xtrain, y=ytrain).predict(X=Xpred)
+    model = LinearRegression(fit_intercept=False)
+    model.fit(X=Xtrain, y=ytrain)
+    return model.predict(X=Xpred)
 ~~~
 {: .language-python}
 the object oriented design provides additional advantages. Specifically, the `predict` operation can be called as many times as desired once the model is fitted. In many machine learning algorithms, predicting values is cheap compared to fitting. Therefore, by separating the `fit` and the `predict` calls we can be more efficient.
@@ -206,11 +208,11 @@ False
 
 Every object is created with a single class, which can't be changed. The class of an object can also provide behaviour that the object might have, by providing functions to objects in its class. As seen before, these functions can be called by using a dot after the variable name, for example:
 ~~~
-numbers.mean()
+numbers.sum()
 ~~~
 {: .language-python}
 
-We say that the `numpy.ndarray` class provides the `mean` _method_. Since `numbers` belongs to the class `numpy.ndarray`, we can use the `mean` method on the object referred to by `numbers`, by calling `numbers.mean()`. This allows objects of the `numpy.ndarray` class to provide functionality specific to objects of class `numpy.ndarray`.
+We say that the `numpy.ndarray` class provides the `sum` _method_. Since `numbers` belongs to the class `numpy.ndarray`, we can use the `sum` method on the object referred to by `numbers`, by calling `numbers.sum()`. This allows objects of the `numpy.ndarray` class to provide functionality specific to objects of class `numpy.ndarray`.
 
 Every instance of `numpy.ndarray` has a member `shape`, which holds the dimensions of the underlying data.
 
